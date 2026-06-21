@@ -1,37 +1,47 @@
 int startValue = 5;
-int ledPin = 4;
+int ledPin = 13;
 
-// This function makes the LED blink 'times' number of times
 void flashLED(int times) {
-  // Use a for loop to repeat the blink
-  for (int i = 0; i < times; i++) {
+
+  int flashCount = 0;
+
+  while (flashCount < times) {
+
     digitalWrite(ledPin, HIGH);
     delay(200);
+
     digitalWrite(ledPin, LOW);
     delay(200);
+
+    flashCount++;
   }
 }
 
 void setup() {
+
   pinMode(ledPin, OUTPUT);
+
   Serial.begin(9600);
 
-  Serial.println("== Smart Countdown Starting ==");
+  Serial.println("=== Smart Countdown Starting ===");
 
   int count = startValue;
-  while (count >= 1) {
-    Serial.print("Count:  ");
+
+  while (count > 0) {
+
+    Serial.print("Count: ");
     Serial.println(count);
 
     flashLED(count);
 
     delay(1000);
+
     count = count - 1;
   }
 
-  Serial.println("== Countdown Complete ==");
+  Serial.println("=== Countdown Complete ===");
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+
 }
